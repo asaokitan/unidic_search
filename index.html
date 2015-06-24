@@ -24,8 +24,14 @@
 			    	<form role="form">
 			      
 						<div class="form-group">
-					    	<label for="username">検索文字列（表層表記形）</label>
-					    	<input type="text" name="keyword" id="keyword" placeholder="キーワード" />
+					    	<label for="surface">表層表記形</label>
+					    	<input type="text" style="font-size:150%;" name="surface" id="surface" />
+					    	<span style="color:gray;">例:「＊星」→「惑星」「勝ち星」「ほうき星」</span>
+						</div>
+						<div class="form-group">
+					    	<label for="lForm">語彙素読み</label>
+					    	<input type="text" style="font-size:150%;" name="lForm" id="lForm" />
+					    	<span style="color:gray;">例:「？？ラ？？？」→「桜吹雪」「ヒエラルキー」「紛らわしい」</span>
 						</div>
 						
 						<button id="search" type="submit" class="btn btn-primary">検索</button>

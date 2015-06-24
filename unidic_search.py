@@ -2,7 +2,10 @@
 # -*- coding: utf-8 -*-
 #
 
+import re
 import csv
+
+import sys # debug
 
 data_path = 'src/unidic-mecab_kana-accent-2.1.2_src/lex.csv'
 colnames = ["sForm", "lID", "rID", "cost",
@@ -27,12 +30,20 @@ source_file = 'src/unidic_kana-accent-2.1.2_src/lex.csv'
 #         yield line.encode('utf-8')
 
 
-def search(string):
+def search(surface='', lForm=''):
+	
+	#sys.stderr.write(string.encode('utf-8')) #debug
+
+	if surface:
+		re_surface = re.compile(surface)
+	if lForm:
+		re_lForm = re.compile(lForm)
 	
 	data = open(data_path, 'r')
 	for line in data:
 		word = line.decode('utf-8').rstrip().split(',')
-		if string in word[0]:
+		
+		if (not surface or re_surface.match(word[0])) and (not lForm or re_lForm.match(word[10])):
 			yield [word[0],word[4],word[5],word[6],word[7],word[8],word[9],word[10],word[11]]
 
 if __name__ == '__main__':

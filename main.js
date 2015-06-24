@@ -3,7 +3,7 @@ $(document).ready(function() {
 		e.preventDefault();
 		e.stopPropagation();
 		
-		if ($('#keyword').val() == '') {
+		if ($('#surface').val() == '' && $('#lForm').val() == '') {
 			$('#message').text('検索文字列を入れてください');
 			$("#message").attr("class","alert alert-warning");
 			$('#message').show();
@@ -14,7 +14,10 @@ $(document).ready(function() {
 			$('#message').show();
 			$('#result_tbody').empty();
 			
-			$.getJSON('web.py', {'keyword': $('#keyword').val()}, function(result) {
+			$.getJSON('web.py', {
+				'surface': $('#surface').val(),
+				'lForm': $('#lForm').val(),
+			}, function(result) {
 				
 				//$('#count').text(result.length);
 				for (var i in result) {
